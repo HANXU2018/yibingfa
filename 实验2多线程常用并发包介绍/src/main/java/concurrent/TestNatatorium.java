@@ -26,7 +26,7 @@ class Natatorium implements Runnable{
 
     private volatile boolean isOpen = true;
     public void addSwimmer(String name, int playTime){
-        long endTime = System.currentTimeMillis() + playTime * 10000 * 60;
+        long endTime = System.currentTimeMillis() + playTime * 100 * 60;
         Swimmer swimmer = new Swimmer(name, endTime);
         System.out.println(swimmer.getName() + "进入游泳馆， 可用游泳时间"+ playTime + "分");
         this.queue.add(swimmer);
