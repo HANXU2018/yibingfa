@@ -5,8 +5,8 @@
 public class ProducerAndConsumer {
     public static void main(String[] args) {
         CarStock carStock = new CarStock();
-        CarProducter producer = new CarProducter(carStock);
-        CarConsumer carConsumer = new CarConsumer(carStock);
+        CarProducter2 producer = new CarProducter2(carStock);
+        CarConsumer2 carConsumer = new CarConsumer2(carStock);
 
         Thread tProduct1 = new Thread(producer);
         Thread tProduct2 = new Thread(producer);
@@ -46,7 +46,7 @@ class CarStock{
             e.printStackTrace();
         }
     }
-    public synchronized void consumeCar(){
+    public synchronized void ConsumeCar(){
         try{
             if(cars > 0){
                 System.out.println(Thread.currentThread().getName()+"购买 🌝"+cars);
@@ -62,9 +62,9 @@ class CarStock{
     }
 }
 
-class CarProducter implements Runnable{
+class CarProducter2 implements Runnable{
     CarStock carStock;
-    public CarProducter(CarStock clerk){
+    public CarProducter2(CarStock clerk){
         this.carStock = clerk;
     }
 
@@ -76,17 +76,17 @@ class CarProducter implements Runnable{
     }
 }
 
-class CarConsumer implements Runnable{
+class CarConsumer2 implements Runnable{
     CarStock carStock;
 
-    public CarConsumer(CarStock carStock) {
+    public CarConsumer2(CarStock carStock) {
         this.carStock = carStock;
     }
 
     @Override
     public void run() {
         while (true){
-            carStock.consumeCar();
+            carStock.ConsumeCar();
         }
     }
 }
