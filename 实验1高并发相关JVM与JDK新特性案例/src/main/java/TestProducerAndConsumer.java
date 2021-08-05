@@ -31,14 +31,14 @@ class CarStockQueue {
             if(success){
                 int id = count++;
                 carData.setId(id);
-                System.out.println("生产 car 编号"+ id + ", 库存" + queue.size());
+                System.out.println(Thread.currentThread().getName() + "生产 car 编号"+ id + ", 库存" + queue.size());
                 Thread.sleep((int)(1000 * Math.random()));
                 notifyAll();
             }else{
                 System.out.println("生产 car 失败🤡");
             }
 
-            if(queue.size() < 100){
+            if(queue.size() < 10){
 
             }else {
                 System.out.println("👖库存已满 等待消费");
@@ -55,7 +55,7 @@ class CarStockQueue {
             if(carData != null){
                 Thread.sleep((int)(1000 * Math.random()));
                 notifyAll();
-                System.out.println("消费 Car "+ carData.getId() + "库存"+ queue.size());
+                System.out.println(Thread.currentThread().getName()+ "消费 Car "+ carData.getId() + "库存"+ queue.size());
             }else{
                 System.out.println("消费 Car 失败");
             }
@@ -109,7 +109,7 @@ class CarConsumer implements Runnable{
 
 public class TestProducerAndConsumer {
     public static void main(String[] args) {
-        BlockingQueue<CarData> queue = new LinkedBlockingDeque<CarData>(100);
+        BlockingQueue<CarData> queue = new LinkedBlockingDeque<CarData>(10);
         CarStockQueue carStockQueue = new CarStockQueue(queue);
 
         CarProducter carProducter1 = new CarProducter(carStockQueue);
