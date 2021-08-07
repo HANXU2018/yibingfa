@@ -15,6 +15,9 @@ public class StringUtilsTest {
         System.out.println(SortUtils.isLetter('に'));
         // 日语符号竟然 当作了 字母 真是害人不浅
 
+        String s = new String("aaa");
+        s.contains("a");
+
 
     }
 }
